@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Closures</h1>
+<p>Counting with a local variable.</p>
+
+<p id="demo">0</p>
+<button type="button" onclick="myFunction()">Count!</button>
+<button type="button" onclick="myFunction2()">Reset!</button>
+
+<script>
+function myCounter() {
+    let counter = 0;
+
+    //method 2, to return a reset function along as well
+    function increment() {
+        counter++;
+        return counter;
+    };
+    function reset(){
+        counter = 0;
+        return counter;
+    }
+
+    return {
+        increment: increment,
+        reset : reset
+    };
+}
+
+// method 1 to reset the counter by re-initializing it in the new function
+let add = myCounter();
+
+// method 1 to reset the counter
+
+// function myFunction(){
+//   document.getElementById("demo").innerHTML = add();
+// }
+// function myFunction2(){
+//     add = myCounter();
+//     document.getElementById("demo").innerHTML = '0';
+// }
+
+// method 2 
+
+function myFunction(){
+    document.getElementById('demo').innerHTML = add.increment();
+}
+
+function myFunction2(){
+    document.getElementById('demo').innerHTML = add.reset();
+}
+
+</script>
+
+</body>
+</html>
