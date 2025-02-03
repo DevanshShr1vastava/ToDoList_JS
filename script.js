@@ -8,15 +8,11 @@ document.addEventListener("DOMContentLoaded",function(){
     
     const confirmDeleteModal = new bootstrap.Modal(document.getElementById('staticBackdrop')); // found this in the bootstrap modal documentation when scroll down including the hide and show methods which come along with it
     
-    // to store the singular or all notes and delete accordingly
-    let deleteElement = [];
-
-    // initial way to edit the list items
-
-    // let editElement = null;    
-    // let editMode = false;
-    // console.log(inputTodo,buttonTodo,listTodo);
     
+    let deleteElement = [];
+    let editElement = null;    
+    let editMode = false;
+    // console.log(inputTodo,buttonTodo,listTodo);
     
     //changing the theme upon clicking the button
 
@@ -69,12 +65,10 @@ document.addEventListener("DOMContentLoaded",function(){
     // another button to delete the entire thing
 
     deleteAllTodo.addEventListener('click',()=>{
-
-        // open the modal and then delete after confirmation, updating the deleteElement list with all the list items
+        // console.log(document.querySelectorAll('.list-group-item'));
         confirmDeleteModal.show();
-        deleteElement = [...document.querySelectorAll('.list-group-item')];  
+        deleteElement = [...document.querySelectorAll('.list-group-item')];
 
-        // inital method to just delete all the list items
         // document.querySelectorAll('.list-group-item').forEach((lis)=>lis.remove());
         // saveAllTodo();
     })
@@ -86,9 +80,6 @@ document.addEventListener("DOMContentLoaded",function(){
         if(e.target.classList.contains('btn-warning')){
             deleteElement =[e.target.closest('.list-group-item')];
             confirmDeleteModal.show();
-
-            // initial approach
-
             // e.target.closest(".list-group-item").remove();
             // saveAllTodo();
         }
@@ -117,7 +108,6 @@ document.addEventListener("DOMContentLoaded",function(){
             li.replaceChild(editInput,li.firstChild);
             li.replaceChild(saveEdit, li.lastChild)
 
-            // Initial Approach (in the training session)
             
             // inputTodo.value = taskText;
             // buttonTodo.textContent = "Update";
